@@ -1,4 +1,4 @@
-#include "../include/Parser.h"
+#include "../include/Network.h"
 #include <iostream>
 #include <vector>
 
@@ -19,14 +19,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    Network NET;
     // Read mutation file
-    std::vector<Node> nodes = readMutationFile(filename);
+    NET.loadMutationsFromFile(filename);
+    // std::vector<Node> nodes = readMutationFile(filename);
 
-    // Print parsed mutation data
-    std::cout << "Loaded " << nodes.size() << " samples." << std::endl;
-    for (size_t i = 0; i < nodes.size(); i++) {
-        nodes[i].printNode();
-    }
-
+    // Print network
+    NET.printNetwork();
+    
     return 0;
 }
