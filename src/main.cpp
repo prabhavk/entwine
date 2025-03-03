@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     // std::vector<Node> nodes = readMutationFile(filename);
 
     // Print network
-    NET.printNetwork();
+    NET.print_network();
 
     return 0;
 }

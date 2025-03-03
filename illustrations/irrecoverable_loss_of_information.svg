@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
-   sodipodi:docname="loss_of_information.svg"
+   sodipodi:docname="irrecoverable_loss_of_information.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.78216892"
-     inkscape:cx="215.42661"
-     inkscape:cy="430.85322"
+     inkscape:cx="214.78736"
+     inkscape:cy="533.13292"
      inkscape:window-width="1584"
      inkscape:window-height="1027"
      inkscape:window-x="42"
@@ -338,7 +338,7 @@
          style="font-size:7.05556px;stroke-width:0.57"
          x="37.522587"
          y="82.552101"
-         id="tspan2">RAxML on leaf sequences </tspan><tspan
+         id="tspan2">RAxML on leaf sequences (A,R,T,C) </tspan><tspan
          sodipodi:role="line"
          style="font-size:7.05556px;stroke-width:0.57"
          x="37.522587"

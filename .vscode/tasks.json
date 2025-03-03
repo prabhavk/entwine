@@ -9,8 +9,7 @@
                 "-std=c++17",
                 "-Wall",
                 "-Wextra",
-                "-Wc++11-extensions",
-                "src/parse_mutations.cpp",
+                "-Wc++11-extensions",                
                 "-o",
                 "entwine"
             ],
