@@ -24,10 +24,14 @@ private:
     std::string id;
     std::string date;
     std::map<std::string, std::set<std::string>> mutations; // Mutations by segment
+    std::vector<std::string> children;
+    std::string parent;
+    std::map<std::string,std::string> parent4seg;
+    bool reassortment_node = false;
 
 public:
     // Constructor
-    Node(const std::string& node_id, const std::string& node_date, 
+    Node(const std::string& node_id, const std::string& node_date,
          const std::map<std::string, std::set<std::string>>& node_mutations)
         : id(node_id), date(node_date), mutations(node_mutations) {}
 
@@ -54,12 +58,19 @@ public:
 // Network Class
 class Network {
 private:
+    int r_index = 0; // index of reassortant node
+    int h_index = 0; // index of non-reassortant hidden node
+    std::string mutations_file_name;
     std::map<std::string, std::unique_ptr<Node>> nodes; // Map of nodes
-    std::vector<std::string> segments; // Stores segment names from file header
+    std::vector<std::string> seg_names = {"PB1", "PB2", "PA", "HA", "NP", "NA", "M1", "NS1"};
+    
 
 public:
     // Constructor
-    Network() = default;
+    Network(std::string mutations_file_name) {
+        createRoot(); // Replace with parser for root genome file
+        loadMutationsFromFile(mutations_file_name);
+    }
 
     // Disable copy constructor & copy assignment (to enforce unique ownership)
     Network(const Network&) = delete;
@@ -77,6 +88,20 @@ public:
             return;
         }
         nodes[node_id] = std::make_unique<Node>(node_id, date, mutations);
+    }
+
+    void createRoot() {
+        std::string root_id = "root";
+        std::string root_date = "2000-1-1"; // set using input data TMP_FLG
+        std::map<std::string, std::set<std::string>> root_muts;
+        for (std::string& seg_name: seg_names) {
+            root_muts[seg_name] = std::set<std::string>();
+        }
+        addNode(root_id, root_date, root_muts);
+    }
+
+    int getNetSize() {
+        nodes.size();
     }
 
     // Function to get a node (returns pointer or nullptr if not found)
@@ -103,6 +128,14 @@ public:
         }
     }
 
+    void graftNode(const std::string& node_id) {
+        if (getNetSize() == 1) {
+
+        } else {
+            // to implement
+        }
+    }
+
     // Function to load mutations from a CSV file
     void loadMutationsFromFile(const std::string& filename) {
         std::ifstream file(filename);
@@ -125,10 +158,7 @@ public:
             }
 
             if (firstLine) {
-                // Store segment names from header (excluding Date and ID columns)
-                for (size_t i = 2; i < tokens.size(); i++) {
-                    segments.push_back(tokens[i]);
-                }
+                // Store segment names from header (excluding Date and ID columns)                
                 firstLine = false;
                 continue;
             }
@@ -150,8 +180,8 @@ public:
                     mutationSet.insert(trim(mutation));  // Remove whitespace
                 }
 
-                if (!segments.empty() && (i - 2) < segments.size()) {
-                    mutations[segments[i - 2]] = mutationSet; // Map mutations to correct segment
+                if ((i - 2) < seg_names.size()) {
+                    mutations[seg_names[i - 2]] = mutationSet; // Map mutations to correct segment
                 }
             }
 
