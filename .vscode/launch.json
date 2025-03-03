@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Entwine",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/entwine",
+            "args": ["--mutations", "data/sim_data/mutations_no_reassortments_leaves.csv"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build Entwine",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/kalaghatgi/Projects/entwine/src/main'
+relocations:     []
+...
